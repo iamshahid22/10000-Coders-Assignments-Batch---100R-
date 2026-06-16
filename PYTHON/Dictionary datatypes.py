@@ -1,48 +1,63 @@
-# intialize an empty dictionary
-users = {}
+# Initialize an empty dictionary to store user profiles
+user_profiles = {}
 
-#fuction to add  new user
-def add_user(id,name):
-    users[id] = name
-    print("Added ID:",name)
-    
-#function to retrieve user name by id
-def get_user(id):
-    names = users.get(id,"user not found")
-    print(f"Retrieving ID {id} : {names}")
-    return names
+# Function to add a new user profile
+def add_user(user_id, name):
+    user_profiles[user_id] = name
+    print(f"Added User: {user_id} -> {name}")
+    print("Dictionary:", user_profiles)
+    print()
 
-#fun to update an existing user name
-def update_user(id,new_name):
-    if id in users:
-        users[id]=new_name
-        print(f"Updated ID{id} to :{new_name}")
+# Function to retrieve a user's name by ID
+def get_user(user_id):
+    if user_id in user_profiles:
+        print(f"User found: {user_id} -> {user_profiles[user_id]}")
     else:
-        print(f"Error:ID{id} not found.cannot update.")
+        print(f"User ID {user_id} not found.")
+    print("Dictionary:", user_profiles)
+    print()
 
-#fun to remove a user by id
-def remove_user(id):
-    if id in users:
-        removed_name=users.pop(id)
-        print(f"Removed ID {id}: {removed_name}")
+# Function to update an existing user's name
+def update_user(user_id, new_name):
+    if user_id in user_profiles:
+        user_profiles[user_id] = new_name
+        print(f"Updated User ID {user_id} with new name '{new_name}'")
     else:
-        print(f"Error: ID {id} not found. cannot remove.")
-    
-# test each function
-add_user(101,"Shahid")
-add_user(102,"venu")
+        print(f"User ID {user_id} not found.")
+    print("Dictionary:", user_profiles)
+    print()
 
-print("Current Profiles:",users)
+# Function to remove a user profile by ID
+def remove_user(user_id):
+    if user_id in user_profiles:
+        del user_profiles[user_id]
+        print(f"Removed User ID {user_id}")
+    else:
+        print(f"User ID {user_id} not found.")
+    print("Dictionary:", user_profiles)
+    print()
 
-get_user(101)
-get_user(103)
+# Testing the functions
 
-update_user(102,"Keerthi")
-update_user(103,"Shyam")
+print("Initial Dictionary:", user_profiles)
+print()
 
-remove_user(102)
-remove_user(105)
+# Add users
+add_user(101, "Shahid")
+add_user(102, "Rahul")
+add_user(103, "Ayesha")
 
-print("Final Profiles:", users)
+# Retrieve users
+get_user(102)
+get_user(999)  # Not found
 
+# Update user
+update_user(103, "Aisha")
+update_user(999, "Ali")  # Not found
 
+# Remove user
+remove_user(101)
+remove_user(999)  # Not found
+
+# Final dictionary
+print("Final Dictionary:", user_profiles)
